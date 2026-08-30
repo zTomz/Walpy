@@ -6,12 +6,13 @@ import 'package:walpy/model/background_image.dart';
 import 'package:walpy/widgets/bottom_sheet_icon_button.dart';
 
 class ColorBackgroundImagePage extends ConsumerWidget {
-  const ColorBackgroundImagePage({Key? key}) : super(key: key);
+  const ColorBackgroundImagePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<List<BackgroundImage>> backgroundImages =
-        ref.watch(colorBackgroundImageProvider);
+    AsyncValue<List<BackgroundImage>> backgroundImages = ref.watch(
+      colorBackgroundImageProvider,
+    );
 
     return Scaffold(
       body: backgroundImages.hasValue
@@ -24,18 +25,23 @@ class ColorBackgroundImagePage extends ConsumerWidget {
                       backgroundImages.value![index].imageURL,
                       fit: BoxFit.cover,
                       filterQuality: FilterQuality.none,
-                      loadingBuilder: (BuildContext context, Widget child,
-                          ImageChunkEvent? loadingProgress) {
-                        if (loadingProgress == null) return child;
-                        return Center(
-                          child: CircularProgressIndicator(
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                    loadingProgress.expectedTotalBytes!
-                                : null,
-                          ),
-                        );
-                      },
+                      loadingBuilder:
+                          (
+                            BuildContext context,
+                            Widget child,
+                            ImageChunkEvent? loadingProgress,
+                          ) {
+                            if (loadingProgress == null) return child;
+                            return Center(
+                              child: CircularProgressIndicator(
+                                value:
+                                    loadingProgress.expectedTotalBytes != null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
+                                    : null,
+                              ),
+                            );
+                          },
                     ),
                   ),
                   Positioned(
@@ -70,9 +76,7 @@ class ColorBackgroundImagePage extends ConsumerWidget {
                 ],
               ),
             )
-          : const Center(
-              child: CircularProgressIndicator(),
-            ),
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 }

@@ -10,17 +10,14 @@ class SecondTitle extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(left: 20, top: 16, bottom: 10),
       alignment: Alignment.centerLeft,
-      child: Text(text, style: theme.textTheme.bodyText1),
+      child: Text(text, style: theme.textTheme.bodyLarge),
     );
   }
 }
 
 class PageTitle extends StatelessWidget {
   final String text;
-  const PageTitle({
-    super.key,
-    required this.text,
-  });
+  const PageTitle({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +25,7 @@ class PageTitle extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(left: 20, top: 40, bottom: 20),
       alignment: Alignment.centerLeft,
-      child: Text(
-        text,
-        style: theme.textTheme.headlineLarge,
-      ),
+      child: Text(text, style: theme.textTheme.headlineLarge),
     );
   }
 }

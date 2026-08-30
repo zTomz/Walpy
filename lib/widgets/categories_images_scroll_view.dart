@@ -9,8 +9,9 @@ class CategorieImagesScrollView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<List<CategoryImage>> categorieImages =
-        ref.watch(categorieImagesProvider);
+    AsyncValue<List<CategoryImage>> categorieImages = ref.watch(
+      categorieImagesProvider,
+    );
 
     return categorieImages.hasValue
         ? Row(
@@ -19,9 +20,11 @@ class CategorieImagesScrollView extends ConsumerWidget {
             children: [
               Column(
                 children: [
-                  for (int index = 0;
-                      index + 2 <= categorieImages.value!.length;
-                      index += 2)
+                  for (
+                    int index = 0;
+                    index + 2 <= categorieImages.value!.length;
+                    index += 2
+                  )
                     CategorieListViewItem(
                       categoryImage: categorieImages.value![index],
                     ),
@@ -30,9 +33,11 @@ class CategorieImagesScrollView extends ConsumerWidget {
               const SizedBox(width: 25),
               Column(
                 children: [
-                  for (int index = 1;
-                      index + 2 <= categorieImages.value!.length;
-                      index += 2)
+                  for (
+                    int index = 1;
+                    index + 2 <= categorieImages.value!.length;
+                    index += 2
+                  )
                     CategorieListViewItem(
                       categoryImage: categorieImages.value![index],
                     ),
@@ -42,9 +47,7 @@ class CategorieImagesScrollView extends ConsumerWidget {
           )
         : const SizedBox(
             height: 100,
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
+            child: Center(child: CircularProgressIndicator()),
           );
   }
 }

@@ -27,8 +27,9 @@ class FileManager {
     Directory _applicationDocumentsDirectory =
         await getApplicationDocumentsDirectory();
 
-    Directory filesFolder =
-        Directory("${_applicationDocumentsDirectory.path}/files");
+    Directory filesFolder = Directory(
+      "${_applicationDocumentsDirectory.path}/files",
+    );
 
     bool filesFolderExist = await filesFolder.exists();
 
@@ -41,15 +42,18 @@ class FileManager {
   }
 
   static Future<CompletionState> saveBackgroundImage(
-      BackgroundImage backgroundImage) async {
+    BackgroundImage backgroundImage,
+  ) async {
     final client = http.Client();
-    final http.Response response =
-        await client.get(Uri.parse(backgroundImage.imageURL));
+    final http.Response response = await client.get(
+      Uri.parse(backgroundImage.imageURL),
+    );
 
     if (response.statusCode == 200) {
       Directory backgroundImageDirectory = await getBackgroundImageFolder();
-      File backgroundImageFile =
-          File("${backgroundImageDirectory.path}/${backgroundImage.id}.png");
+      File backgroundImageFile = File(
+        "${backgroundImageDirectory.path}/${backgroundImage.id}.png",
+      );
       backgroundImageFile.writeAsBytesSync(response.bodyBytes);
       debugPrint("Saved file");
       return CompletionState.done;

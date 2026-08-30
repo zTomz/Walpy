@@ -5,8 +5,7 @@ import 'package:walpy/model/category_image.dart';
 import 'package:walpy/pages/category_bg_image_page.dart';
 
 class CategorieListViewItem extends ConsumerWidget {
-  const CategorieListViewItem({Key? key, required this.categoryImage})
-      : super(key: key);
+  const CategorieListViewItem({super.key, required this.categoryImage});
 
   final CategoryImage categoryImage;
 
@@ -17,9 +16,7 @@ class CategorieListViewItem extends ConsumerWidget {
         ref.read(selectedCategoryProvider.notifier).state =
             categoryImage.category;
         Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const CategoryBgImagePage(),
-          ),
+          MaterialPageRoute(builder: (context) => const CategoryBgImagePage()),
         );
       },
       child: Container(
@@ -35,27 +32,31 @@ class CategorieListViewItem extends ConsumerWidget {
                   categoryImage.imageURL,
                   fit: BoxFit.cover,
                   filterQuality: FilterQuality.none,
-                  loadingBuilder: (BuildContext context, Widget child,
-                      ImageChunkEvent? loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Center(
-                      child: CircularProgressIndicator(
-                        value: loadingProgress.expectedTotalBytes != null
-                            ? loadingProgress.cumulativeBytesLoaded /
-                                loadingProgress.expectedTotalBytes!
-                            : null,
-                      ),
-                    );
-                  },
+                  loadingBuilder:
+                      (
+                        BuildContext context,
+                        Widget child,
+                        ImageChunkEvent? loadingProgress,
+                      ) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                      loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        );
+                      },
                 ),
               ),
               Positioned.fill(
                 child: Center(
                   child: Text(
                     "${categoryImage.category[0].toUpperCase()}${categoryImage.category.substring(1)}",
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          color: Colors.white,
-                        ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyLarge!.copyWith(color: Colors.white),
                   ),
                 ),
               ),

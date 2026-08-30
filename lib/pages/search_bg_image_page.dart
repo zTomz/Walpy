@@ -10,8 +10,9 @@ class SearchBgImagePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<List<BackgroundImage>> backgroundImages =
-        ref.watch(searchBackgroundImagesProvider);
+    AsyncValue<List<BackgroundImage>> backgroundImages = ref.watch(
+      searchBackgroundImagesProvider,
+    );
 
     return Scaffold(
       body: backgroundImages.hasValue
@@ -24,18 +25,23 @@ class SearchBgImagePage extends ConsumerWidget {
                       backgroundImages.value![index].imageURL,
                       fit: BoxFit.cover,
                       filterQuality: FilterQuality.none,
-                      loadingBuilder: (BuildContext context, Widget child,
-                          ImageChunkEvent? loadingProgress) {
-                        if (loadingProgress == null) return child;
-                        return Center(
-                          child: CircularProgressIndicator(
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                    loadingProgress.expectedTotalBytes!
-                                : null,
-                          ),
-                        );
-                      },
+                      loadingBuilder:
+                          (
+                            BuildContext context,
+                            Widget child,
+                            ImageChunkEvent? loadingProgress,
+                          ) {
+                            if (loadingProgress == null) return child;
+                            return Center(
+                              child: CircularProgressIndicator(
+                                value:
+                                    loadingProgress.expectedTotalBytes != null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
+                                    : null,
+                              ),
+                            );
+                          },
                     ),
                   ),
                   Positioned(
@@ -70,9 +76,7 @@ class SearchBgImagePage extends ConsumerWidget {
                 ],
               ),
             )
-          : const Center(
-              child: CircularProgressIndicator(),
-            ),
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 }

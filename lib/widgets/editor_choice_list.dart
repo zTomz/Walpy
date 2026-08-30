@@ -5,14 +5,13 @@ import 'package:walpy/model/background_image.dart';
 import 'package:walpy/pages/background_image_showcase_page.dart';
 
 class EditorChoiceList extends ConsumerWidget {
-  const EditorChoiceList({
-    Key? key,
-  }) : super(key: key);
+  const EditorChoiceList({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<List<BackgroundImage>> backgroundImages =
-        ref.watch(editorChoiceImagesProvider);
+    AsyncValue<List<BackgroundImage>> backgroundImages = ref.watch(
+      editorChoiceImagesProvider,
+    );
 
     return SizedBox(
       height: 200,
@@ -31,8 +30,7 @@ class EditorChoiceList extends ConsumerWidget {
                         context,
                         PageRouteBuilder(
                           transitionDuration: const Duration(milliseconds: 750),
-                          pageBuilder: (_, __, ___) =>
-                              BackgroundImageShowcasePage(
+                          pageBuilder: (_, _, _) => BackgroundImageShowcasePage(
                             backgroundImage: backgroundImages.value![index],
                           ),
                         ),
@@ -46,19 +44,26 @@ class EditorChoiceList extends ConsumerWidget {
                           backgroundImages.value![index].imageURL,
                           fit: BoxFit.cover,
                           filterQuality: FilterQuality.none,
-                          loadingBuilder: (BuildContext context, Widget child,
-                              ImageChunkEvent? loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return Center(
-                              child: CircularProgressIndicator(
-                                value: loadingProgress.expectedTotalBytes !=
-                                        null
-                                    ? loadingProgress.cumulativeBytesLoaded /
-                                        loadingProgress.expectedTotalBytes!
-                                    : null,
-                              ),
-                            );
-                          },
+                          loadingBuilder:
+                              (
+                                BuildContext context,
+                                Widget child,
+                                ImageChunkEvent? loadingProgress,
+                              ) {
+                                if (loadingProgress == null) return child;
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                    value:
+                                        loadingProgress.expectedTotalBytes !=
+                                            null
+                                        ? loadingProgress
+                                                  .cumulativeBytesLoaded /
+                                              loadingProgress
+                                                  .expectedTotalBytes!
+                                        : null,
+                                  ),
+                                );
+                              },
                         ),
                       ),
                     ),
@@ -66,9 +71,7 @@ class EditorChoiceList extends ConsumerWidget {
                 );
               },
             )
-          : const Center(
-              child: CircularProgressIndicator(),
-            ),
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 }

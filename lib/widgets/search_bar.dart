@@ -5,15 +5,14 @@ import 'package:walpy/data/provider.dart';
 import 'package:walpy/pages/search_bg_image_page.dart';
 import 'package:walpy/services/image_service.dart';
 
-class SearchBar extends ConsumerWidget {
-  const SearchBar({
-    Key? key,
-  }) : super(key: key);
+class CustomSearchBar extends ConsumerWidget {
+  const CustomSearchBar({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    TextEditingController searchController =
-        ref.watch(searchControllerProvider);
+    TextEditingController searchController = ref.watch(
+      searchControllerProvider,
+    );
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -47,9 +46,7 @@ class SearchBar extends ConsumerWidget {
               icon: const Icon(Icons.search_rounded),
             ),
             suffixIconColor: kGREY,
-            hintStyle: const TextStyle(
-              color: kGREY,
-            ),
+            hintStyle: const TextStyle(color: kGREY),
           ),
         ),
       ),

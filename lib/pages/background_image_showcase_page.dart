@@ -15,9 +15,7 @@ class BackgroundImageShowcasePage extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage(
-              backgroundImage.imageURL,
-            ),
+            image: NetworkImage(backgroundImage.imageURL),
             fit: BoxFit.cover,
           ),
         ),

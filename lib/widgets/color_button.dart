@@ -6,11 +6,7 @@ import 'package:walpy/pages/color_bg_image_page.dart';
 class ColorButton extends ConsumerWidget {
   final String colorName;
   final Color color;
-  const ColorButton({
-    super.key,
-    required this.color,
-    required this.colorName,
-  });
+  const ColorButton({super.key, required this.color, required this.colorName});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,10 +26,7 @@ class ColorButton extends ConsumerWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(7.5),
           color: color,
-          border: Border.all(
-            width: 2,
-            color: const Color(0xFF141514),
-          ),
+          border: Border.all(width: 2, color: const Color(0xFF141514)),
         ),
       ),
     );

@@ -5,16 +5,9 @@ const kBLUE = Color(0xFF3a86ff);
 
 const imageTag = "image";
 
-enum CompletionState {
-  done,
-  error,
-}
+enum CompletionState { done, error }
 
-enum WallpaperScreens {
-  home,
-  lock,
-  both,
-}
+enum WallpaperScreens { home, lock, both }
 
 Map<String, Color> imageColors = {
   "grayscale": const Color(0xFFD6D7D6),
@@ -52,5 +45,5 @@ const List<String> imageCategories = [
   "travel",
   "buildings",
   "business",
-  "music"
+  "music",
 ];

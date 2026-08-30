@@ -3,9 +3,7 @@ import 'package:walpy/data/constants.dart';
 import 'package:walpy/widgets/color_button.dart';
 
 class ColorTonePickerList extends StatelessWidget {
-  const ColorTonePickerList({
-    Key? key,
-  }) : super(key: key);
+  const ColorTonePickerList({super.key});
 
   @override
   Widget build(BuildContext context) {

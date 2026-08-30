@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:walpy/model/background_image.dart';
 import 'package:walpy/services/image_service.dart';
 
@@ -31,8 +32,9 @@ final categorieBackgroundImagesProvider = FutureProvider((ref) {
   return ImageAPI.getCategoieBackgroundImages(selectedCategory);
 });
 
-FutureProvider<List<BackgroundImage>> searchBackgroundImagesProvider = FutureProvider((ref) {
-  return ImageAPI.getImagesBySearchString(
-    ref.read(searchControllerProvider).text,
-  );
-});
+FutureProvider<List<BackgroundImage>> searchBackgroundImagesProvider =
+    FutureProvider((ref) {
+      return ImageAPI.getImagesBySearchString(
+        ref.read(searchControllerProvider).text,
+      );
+    });

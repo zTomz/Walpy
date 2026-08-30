@@ -7,7 +7,7 @@ import 'package:walpy/widgets/search_bar.dart';
 import 'package:walpy/widgets/texts.dart';
 
 class ExplorePage extends ConsumerWidget {
-  const ExplorePage({Key? key}) : super(key: key);
+  const ExplorePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,13 +15,17 @@ class ExplorePage extends ConsumerWidget {
       body: ListView(
         children: const [
           SizedBox(height: 25),
-          SearchBar(),
+          CustomSearchBar(),
           SecondTitle(text: "Editor Choice"),
           EditorChoiceList(),
           SecondTitle(text: "The color tone"),
           ColorTonePickerList(),
           SecondTitle(text: "Categories"),
           CategorieImagesScrollView(),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: Center(child: Text("Images provided by Pixabay")),
+          ),
         ],
       ),
     );

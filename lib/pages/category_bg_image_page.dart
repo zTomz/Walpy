@@ -6,14 +6,13 @@ import 'package:walpy/model/background_image.dart';
 import 'package:walpy/widgets/bottom_sheet_icon_button.dart';
 
 class CategoryBgImagePage extends ConsumerWidget {
-  const CategoryBgImagePage({
-    super.key,
-  });
+  const CategoryBgImagePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<List<BackgroundImage>> backgroundImages =
-        ref.watch(categorieBackgroundImagesProvider);
+    AsyncValue<List<BackgroundImage>> backgroundImages = ref.watch(
+      categorieBackgroundImagesProvider,
+    );
 
     return Scaffold(
       body: backgroundImages.hasValue
@@ -26,18 +25,23 @@ class CategoryBgImagePage extends ConsumerWidget {
                       backgroundImages.value![index].imageURL,
                       fit: BoxFit.cover,
                       filterQuality: FilterQuality.none,
-                      loadingBuilder: (BuildContext context, Widget child,
-                          ImageChunkEvent? loadingProgress) {
-                        if (loadingProgress == null) return child;
-                        return Center(
-                          child: CircularProgressIndicator(
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                    loadingProgress.expectedTotalBytes!
-                                : null,
-                          ),
-                        );
-                      },
+                      loadingBuilder:
+                          (
+                            BuildContext context,
+                            Widget child,
+                            ImageChunkEvent? loadingProgress,
+                          ) {
+                            if (loadingProgress == null) return child;
+                            return Center(
+                              child: CircularProgressIndicator(
+                                value:
+                                    loadingProgress.expectedTotalBytes != null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
+                                    : null,
+                              ),
+                            );
+                          },
                     ),
                   ),
                   Positioned(
@@ -72,9 +76,7 @@ class CategoryBgImagePage extends ConsumerWidget {
                 ],
               ),
             )
-          : const Center(
-              child: CircularProgressIndicator(),
-            ),
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 }

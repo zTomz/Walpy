@@ -1,6 +1,23 @@
 # Walpy
 
-Walpy is a wallpaper app for Android. It is powered by Pixaby and with this, it has a large amount of cool images. You can choose images from our editor choice images, from colors or from a category. Or you search for a specific image. The complete app is open source on GitHub.
+Walpy is a wallpaper app for Android. It is powered by Pixabay and with this, it has a large amount of cool images. You can choose images from our editor choice images, from colors or from a category. Or you search for a specific image. The complete app is open source on GitHub.
+
+## Development setup
+
+Walpy uses the Pixabay API. Create your own API key and pass it at build or run
+time; do not add it to a source file:
+
+```shell
+flutter run --dart-define=PIXABAY_API_KEY=your_key_here
+```
+
+For a production app, a value supplied through `--dart-define` is still part of
+the compiled application and can be extracted. Use a backend proxy if the key
+must remain confidential, and apply provider-side restrictions where available.
+
+If a key has ever been committed to a public repository, revoke or rotate it.
+Removing it from the latest commit or rewriting Git history does not invalidate
+copies that may already exist.
 
 At Galaxy Store: https://galaxystore.samsung.com/detail/com.example.walpy
 

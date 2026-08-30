@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:walpy/pages/explore_page.dart';
 
 void main() {
-  runApp(
-    const ProviderScope(
-      child: MyApp(),
-    ),
-  );
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends ConsumerWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,17 +15,16 @@ class MyApp extends ConsumerWidget {
       title: 'Walpy',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF3a86ff),
-        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF3a86ff)),
         scaffoldBackgroundColor: const Color(0xFFE3F2FD),
-        textTheme: TextTheme(
-          headlineLarge: GoogleFonts.nunito().copyWith(
-              color: Colors.black,
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-              height: 1),
-          bodyText1: GoogleFonts.nunito().copyWith(
+        textTheme: const TextTheme(
+          headlineLarge: TextStyle(
+            color: Colors.black,
+            fontSize: 40,
+            fontWeight: FontWeight.bold,
+            height: 1,
+          ),
+          bodyLarge: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w800,
             fontSize: 18,

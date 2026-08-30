@@ -19,11 +19,14 @@ class BottomSheetIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        final saveWallpaperState =
-            await FileManager.saveBackgroundImage(backgroundImage);
+        final saveWallpaperState = await FileManager.saveBackgroundImage(
+          backgroundImage,
+        );
+        if (!context.mounted) {
+          return;
+        }
 
         if (saveWallpaperState == CompletionState.error) {
-          // ignore: use_build_context_synchronously
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               behavior: SnackBarBehavior.floating,
@@ -31,11 +34,9 @@ class BottomSheetIconButton extends StatelessWidget {
               backgroundColor: const Color(0xFFDB5461),
               content: Text(
                 "Error by saving the image!",
-                // ignore: use_build_context_synchronously
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(color: Colors.white),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyLarge!.copyWith(color: Colors.white),
               ),
             ),
           );
@@ -43,11 +44,15 @@ class BottomSheetIconButton extends StatelessWidget {
           return;
         }
 
-        final wallpaperCompletionState =
-            await addWallpaper(backgroundImage.id, wallpaperScreens);
+        final wallpaperCompletionState = await addWallpaper(
+          backgroundImage.id,
+          wallpaperScreens,
+        );
+        if (!context.mounted) {
+          return;
+        }
 
         if (wallpaperCompletionState == CompletionState.error) {
-          // ignore: use_build_context_synchronously
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               behavior: SnackBarBehavior.floating,
@@ -55,11 +60,9 @@ class BottomSheetIconButton extends StatelessWidget {
               backgroundColor: const Color(0xFFDB5461),
               content: Text(
                 "Error by setting the image as background!",
-                // ignore: use_build_context_synchronously
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(color: Colors.white),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyLarge!.copyWith(color: Colors.white),
               ),
             ),
           );
@@ -67,21 +70,19 @@ class BottomSheetIconButton extends StatelessWidget {
           return;
         }
 
-        // ignore: use_build_context_synchronously
+        final messenger = ScaffoldMessenger.of(context);
+        final successTextStyle = Theme.of(
+          context,
+        ).textTheme.bodyLarge!.copyWith(color: Colors.white);
         Navigator.pop(context);
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(
+        messenger.showSnackBar(
           SnackBar(
             behavior: SnackBarBehavior.floating,
             duration: const Duration(milliseconds: 1250),
             backgroundColor: const Color(0xFFadc178),
             content: Text(
               "Set image as new background!",
-              // ignore: use_build_context_synchronously
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(color: Colors.white),
+              style: successTextStyle,
             ),
           ),
         );
@@ -91,15 +92,9 @@ class BottomSheetIconButton extends StatelessWidget {
         height: 70,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: kGREY.withOpacity(0.55),
+          color: kGREY.withValues(alpha: 0.55),
         ),
-        child: Center(
-          child: Icon(
-            icon,
-            size: 30,
-            color: kBLUE,
-          ),
-        ),
+        child: Center(child: Icon(icon, size: 30, color: kBLUE)),
       ),
     );
   }

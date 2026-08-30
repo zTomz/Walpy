@@ -28,16 +28,16 @@ class BackgroundImage {
   });
 
   BackgroundImage.fromJSON(Map<String, dynamic> json)
-      : id = json["id"] as int,
-        pageURL = json["pageURL"] as String,
-        tags = (json["tags"] as String).replaceAll(" ", "").split(","),
-        previewURL = json["previewURL"] as String,
-        width = json["imageWidth"] as int,
-        height = json["imageHeight"] as int,
-        views = json["views"] as int,
-        downloads = json["downloads"] as int,
-        likes = json["likes"] as int,
-        user = json["user"] as String,
-        userImageURL = json["userImageURL"] as String,
-        imageURL = json["largeImageURL"];
+    : id = json["id"] as int,
+      pageURL = json["pageURL"] as String,
+      tags = (json["tags"] as String).replaceAll(" ", "").split(","),
+      previewURL = json["previewURL"] as String,
+      width = json["imageWidth"] as int,
+      height = json["imageHeight"] as int,
+      views = json["views"] as int,
+      downloads = json["downloads"] as int,
+      likes = json["likes"] as int,
+      user = json["user"] as String,
+      userImageURL = json["userImageURL"] as String,
+      imageURL = json["largeImageURL"];
 }
